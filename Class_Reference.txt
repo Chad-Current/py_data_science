@@ -1,0 +1,40 @@
+Choosing between @staticmethod and @class method
+
+
+@staticmethod
+-No access needed to either class or instance objects
+-Most linkely an implementation detail of the class
+-May be able to be moved to become a module-scope function
+
+
+class A:	
+	serial = 0
+	@staticmethod
+	def __get_next_serial():
+		result = A.serial
+		A.serial += 1
+		return result
+
+	def __init__(self,a):
+		self.a = a
+		self.serial = A._get_next_serial()
+
+@classmethod
+-Required access to the class object to call other class methods or the constructor
+
+
+
+
+
+
+
+
+@property can be used as essentially getter methods and when accessed behaves like an attribute
+
+@property
+def example(self):
+	return self._example
+
+@example.setter		<-- the .setter synthax is very important and required
+def example(self,value):
+	self._example = value
